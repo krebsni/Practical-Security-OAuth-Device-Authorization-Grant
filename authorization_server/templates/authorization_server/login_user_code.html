@@ -1,0 +1,19 @@
+{% extends "authorization_server/base.html" %}
+
+{% block authorization_form %}
+<h2>Connect Your Device</h2>
+<p>Please enter the User Code displayed in your device</p>
+<form method="post" autocomplete="off" action="{% url 'authorization_server:process-user-code' %}">
+  {% csrf_token %}
+  <input autocomplete="false" name="hidden" type="text" style="display:none;">
+  <div class="inputBox">
+    <input type="username" name="user_code" required onkeyup="this.setAttribute('value', this.value);" 
+      autocomplete="off" value="">
+    <label>Enter Code</label>
+  </div>
+  {% if error %}
+  <p style="color: red;">{{error}}. Please try again.</p>
+  {% endif %}
+  <button type="submit" name="sign-in">Continue</button>
+</form>
+{% endblock %}

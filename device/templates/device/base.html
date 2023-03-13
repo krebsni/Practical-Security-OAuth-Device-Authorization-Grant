@@ -1,0 +1,18 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Device</title>
+    <link rel="stylesheet" href="{% static 'device/device.css' %}">
+    <script src="{% static 'device/script.js' %}"></script>
+</head>
+<body>
+<div class="box">
+    <div id="content">
+        <div id="display">{% block display %}{% lorem %}{% endblock %}</div>
+        <div id="name">{% block name %}{% endblock %}</div>
+    </div>
+</div>
+</body>
+</html>

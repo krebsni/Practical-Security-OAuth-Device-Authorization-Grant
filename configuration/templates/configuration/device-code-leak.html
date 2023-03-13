@@ -1,0 +1,50 @@
+{% extends "configuration/base_config.html" %}
+{% block description %}Device Code Leak{% endblock %}
+
+{% block config %}
+{% if error_message %}<p><strong>{{ error_message }}</strong></p>{% endif %}
+
+<form action="{% url 'configuration:dcl' %}" method="post">
+    {% csrf_token %}
+    {% for key, value in dcl_choices.items %}
+    {% if key != '' %}
+    <input type="radio" name="choice" id="choice{{ forloop.counter }}" value="{{ key }}" {% if key == "bf" %}
+        onchange="document.getElementById('bf_param').style.display = 'block';" {% else %}
+        onchange="document.getElementById('bf_param').style.display = 'none';" {% endif %} {% if forloop.counter == 1 %}
+        checked {% endif %}>
+    <label for="choice{{ forloop.counter }}">{{ value }}</label><br>
+    {% endif %}
+    {% endfor %}
+    <div id="bf_param" style="display: none;">
+        <hr style="border-top: 2px solid #bbb; margin: 1em 0em">
+        <label for="entropy">Entropy of device code: </label>
+        <input type="range" id="entropy" list="tickmarks"
+            oninput="document.getElementById('value').innerHTML = this.value;" style="width:40em;" name="entropy"
+            step="1" min="2" max="20">
+        <em id="value" style="font-style: normal;">11</em>
+        <em style="font-style: normal;"> Bits</em>
+        <datalist id="tickmarks">
+            <option value="2" label="2"></option>
+            <option value="4"></option>
+            <option value="6"></option>
+            <option value="8" label="8"></option>
+            <option value="10"></option>
+            <option value="12"></option>
+            <option value="14" label="14"></option>
+            <option value="16"></option>
+            <option value="18"></option>
+            <option value="20" label="20"></option>
+        </datalist>
+        <p>Note: Depending on the device the server is run on, the attack may be feasible up to a user_code entropy of about 12.</p>
+        <input type="checkbox" name="rate_limiting" id="rate_limiting">
+        <label for="rate_limiting">Rate-limiting: Authorization server limits rate for polling per polling party (here just for the attacker, max 3 attempts/s)</label>
+    </div>
+    <hr style="border-top: 2px solid #bbb; margin: 1em 0">
+    <input type="checkbox" name="show_device_name" id="show_device_name">
+    <label for="show_device_name">AS shows what device is registered</label>
+    <br>
+    <input type="checkbox" name="show_scope" id="show_scope">
+    <label for="show_scope">AS shows requested scope</label><br><br>
+    <button type="submit">Continue</button>
+</form>
+{% endblock %}

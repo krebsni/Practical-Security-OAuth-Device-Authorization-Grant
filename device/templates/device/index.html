@@ -1,0 +1,7 @@
+{% extends "device/base.html" %}
+
+{% block name %}{{device_name}}{% endblock %}
+{% block display %}
+<h2>Do you want to register this device at AliceAuthenticate?</h2>
+<button onclick=deviceGrant("{% url "device:index" %}")>Yes</button>
+{% endblock %}

@@ -1,0 +1,20 @@
+{% extends "configuration/base_config.html" %}
+
+{% block description %} Configuration Complete! {% endblock %}
+
+{% block config %}
+<p>{{config}}</p>
+{% if sep != "" %}
+<p><b>{{sep}}</b></p>
+{% endif %}
+<br>
+<div style="text-align: center;">
+<button  onclick="window.open('{{link}}', '_blank')">Start</button>
+</div>
+
+<hr style="border-top: 2px solid #bbb; margin: 3em 0">
+<div style="text-align: center;">
+    <button onclick="window.open('{% url 'configuration:config' %}', '_self')">Try out another scenario</button>
+</div>
+
+{% endblock %}

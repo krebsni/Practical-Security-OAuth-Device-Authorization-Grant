@@ -1,0 +1,25 @@
+{% extends "attacker/base.html" %}
+
+{% block authorization_form %}
+<h2>Sign in</h2>
+<p>Use your AliceServices Account to connect your device with your account</p>
+<form method="post" autocomplete="off" action="{% url 'attacker:authenticate' %}">
+  {% csrf_token %}
+  <input autocomplete="false" name="hidden" type="text" style="display:none;">
+  <input type="hidden" name="user_code" value={{user_code}}>
+  <div class="inputBox">
+    <input type="username" name="username" required onkeyup="this.setAttribute('value', this.value);" 
+      autocomplete="off" value="">
+    <label>Username</label>
+  </div>
+  <div class="inputBox">
+    <input type="password" name="password" required onkeyup="this.setAttribute('value', this.value);" 
+      autocomplete="off" value="">
+    <label>Password</label>
+  </div>
+  {% if error %}
+  <p style="color: red;">{{error}}. Please try again.</p>
+  {% endif %}
+  <button type="submit" name="sign-in">Confirm</button>
+</form>
+{% endblock %}

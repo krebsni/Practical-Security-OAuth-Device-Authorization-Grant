@@ -1,0 +1,9 @@
+<h1>Device Registration</h1>
+<br>
+<p>User Code: {{user_code}}</p>
+{% if device_code %}
+<p>Device Code: {{device_code}}</p>
+{% endif %}
+<span>Verification URI: </span><a href={{verification_uri}}>{{verification_uri}}</a>
+<br>
+<span>Verification URI Complete: </span><a href={{verification_uri_complete}}>{{verification_uri_complete}}</a>

@@ -1,0 +1,19 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>CSRF with QR-Code</title>
+    <link rel="stylesheet" type="text/css" href="{% static 'attacker/login.css' %}">
+</head>
+<body>
+<div class="box">
+    <p>Please click on the QR-Code: </p>
+    <a href="{{link}}" target="_blank">
+        
+        <img alt="Click Me" src="{% static 'attacker/qr_code.png' %}" style="display: block; margin: 0 auto"
+        width="300" height="300">
+    </a>
+</div>
+</body>
+</html>

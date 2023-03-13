@@ -1,0 +1,21 @@
+{% extends "configuration/base_config.html" %}
+{% block description %}Man in the Middle{% endblock %}
+
+{% block config %}
+{% if error_message %}<p><strong>{{ error_message }}</strong></p>{% endif %}
+
+<form action="{% url 'configuration:mitm' %}" method="post">
+    {% csrf_token %}
+    {% for key, value in mitm_choices.items %}
+    {% if key != '' %}
+    <input type="checkbox" name="{{ key }}" id="mitm{{ forloop.counter }}">
+    <label for="mitm{{ forloop.counter }}">{{ value }}</label><br>
+    {% endif %}
+    {% endfor %}
+    <input type="checkbox" name="show_device_name" id="show_device_name">
+    <label for="show_device_name">AS shows what device is registered</label>
+    <br><input type="checkbox" name="show_scope" id="show_scope">
+    <label for="show_scope">AS shows requested scope</label><br></br>
+    <button type="submit">Continue</button>
+</form>
+{% endblock %}

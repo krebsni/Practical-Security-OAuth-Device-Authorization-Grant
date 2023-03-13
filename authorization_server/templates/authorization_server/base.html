@@ -1,0 +1,14 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Sign in</title>
+    <link rel="stylesheet" type="text/css" href="{% static 'authorization_server/login.css' %}">
+    <script></script>
+</head>
+<body>
+<div class="box">{% block authorization_form %}{% lorem %}{% endblock %}</div>
+{% block ad %}{% endblock %}
+</body>
+</html>

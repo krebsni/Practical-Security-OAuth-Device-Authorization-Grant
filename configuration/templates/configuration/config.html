@@ -1,0 +1,10 @@
+{% extends "configuration/base_config.html" %}
+
+{% block config %}
+<h2>Please choose an attack scenario:</h2>
+<ol>
+{% for key, value in attack_choices.items %}
+    <li><a href="{% url 'configuration:'|add:key %}">{{ value }}</a></li>
+{% endfor %}
+</ol>
+{% endblock %}

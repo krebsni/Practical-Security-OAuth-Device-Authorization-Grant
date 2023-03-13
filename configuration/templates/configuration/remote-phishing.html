@@ -1,0 +1,23 @@
+{% extends "configuration/base_config.html" %}
+{% block description %}Remote Phishing{% endblock %}
+
+{% block config %}
+<form method="post" autocomplete="off" action="{% url 'configuration:rp' %}">
+    {% csrf_token %}
+    <input autocomplete="false" name="hidden" type="text" style="display:none;">
+    {% for key, value in rp_choices.items %}
+    {% if key != '' %}
+    <input type="radio" name="choice" id="choice{{ forloop.counter }}" value="{{ key }}"
+    {% if forloop.counter == 1 %}
+        checked {% endif %}>
+    <label for="choice{{ forloop.counter }}">{{ value }}</label><br>
+    {% endif %}
+    {% endfor %}
+    <hr style="border-top: 2px solid #bbb; margin: 1em 0">
+    <input type="checkbox" name="show_device_name" id="show_device_name">
+    <label for="show_device_name">AS shows what device is registered</label>
+    <br><input type="checkbox" name="show_scope" id="show_scope">
+    <label for="show_scope">AS shows requested scope</label><br><br>
+    <button type="submit" name="sign-in">Continue</button>
+</form>
+{% endblock %}

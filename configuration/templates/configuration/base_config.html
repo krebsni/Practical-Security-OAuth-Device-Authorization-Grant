@@ -1,0 +1,16 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Configuration</title>
+    <link rel="stylesheet" href="{% static 'configuration/styles.css' %}">
+</head>
+<body>
+<div id="content">
+    <div id="title"><h1>Configuration of Attack Scenario<h1></div>
+    <div id="description"><h2>{% block description %}{% endblock %}</h2></div>
+    <div id="config">{% block config %}{% endblock %}</div>
+</div>
+</body>
+</html>

@@ -1,0 +1,14 @@
+{% extends "configuration/base_config.html" %}
+{% block description %}No Attack{% endblock %}
+
+{% block config %}
+<form action="{% url 'configuration:no-attack' %}" method="post">
+    {% csrf_token %}
+    <input type="checkbox" name="show_device_name" id="show_device_name">
+    <label for="show_device_name">AS shows what device is registered</label>
+    <br><input type="checkbox" name="show_scope" id="show_scope">
+    <label for="show_scope">AS shows requested scope</label><br></br>
+
+    <button type="submit">Continue</button>
+</form>
+{% endblock %}

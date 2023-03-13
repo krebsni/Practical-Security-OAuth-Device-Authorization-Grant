@@ -1,0 +1,16 @@
+{% extends "configuration/base_config.html" %}
+{% block description %}Corrupted Device Client{% endblock %}
+
+{% block config %}
+<form action="{% url 'configuration:cdc' %}" method="post">
+    {% csrf_token %}
+    {% for key, value in cdc_choices.items %}
+    {% if key != '' %}
+    <input type="checkbox" name="{{ key }}" id="cdc{{ forloop.counter }}">
+    <label for="cdc{{ forloop.counter }}">{{ value }}</label><br>
+    {% endif %}
+    {% endfor %}
+    <br></br>
+    <button type="submit">Continue</button>
+</form>
+{% endblock %}
